@@ -17,24 +17,24 @@ function App() {
 	// const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		axios
-			.get(process.env.REACT_APP_SERVER_DOMAIN + "/api/releases/upcoming", {
-				params: options
-			})
-			.then((res) => {
-				// setLoading(false);
-				if (res.data.length === 0) {
-					// setRefreshing(true);
-				} else {
-					// setRefreshing(false);
-					setReleases(res.data);
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		// axios
+		// 	.get(process.env.REACT_APP_SERVER_DOMAIN + "/api/releases/upcoming", {
+		// 		params: options
+		// 	})
+		// 	.then((res) => {
+		// 		// setLoading(false);
+		// 		if (res.data.length === 0) {
+		// 			// setRefreshing(true);
+		// 		} else {
+		// 			// setRefreshing(false);
+		// 			setReleases(res.data);
+		// 		}
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 	});
     }, [options]);
-    
+
     if (false) {
     setOptions({ genre: "all", type: "all" });
     }
