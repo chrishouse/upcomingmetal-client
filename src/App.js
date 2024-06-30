@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
-// import GenreFilter from "./components/GenreFilter";
-// import TypeFilter from "./components/TypeFilter";
+import GenreFilter from "./components/GenreFilter";
+import TypeFilter from "./components/TypeFilter";
 
 function App() {
 	let [releases, setReleases] = useState([]);
@@ -143,8 +143,8 @@ function App() {
 			<header className="header-main">
 				<h2>Upcoming Metal</h2>
 				<div className="dropdown-wrapper">
-					{/* <GenreFilter value={options.genre} changeGenre={changeGenre}></GenreFilter>
-					<TypeFilter value={options.type} changeType={changeType}></TypeFilter> */}
+					<GenreFilter value={options.genre}></GenreFilter>
+					<TypeFilter value={options.type}></TypeFilter>
 				</div>
 			</header>
 
