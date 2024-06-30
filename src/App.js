@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
-import GenreFilter from "./components/GenreFilter";
-import TypeFilter from "./components/TypeFilter";
+// import GenreFilter from "./components/GenreFilter";
+// import TypeFilter from "./components/TypeFilter";
 
 function App() {
 	let [releases, setReleases] = useState([]);
@@ -33,7 +33,11 @@ function App() {
 			.catch((err) => {
 				console.log(err);
 			});
-	}, [options]);
+    }, [options]);
+    
+    if (false) {
+    setOptions({ genre: "all", type: "all" });
+    }
 
 	const months = {
 		January: "01",
@@ -108,13 +112,13 @@ function App() {
 	// 	e.target.classList.add("active");
 	// };
 
-	const changeGenre = (e) => {
-		setOptions({ genre: e.target.value, type: options.type });
-	};
+	// const changeGenre = (e) => {
+	// 	setOptions({ genre: e.target.value, type: options.type });
+	// };
 
-	const changeType = (e) => {
-		setOptions({ genre: options.genre, type: e.target.value });
-	};
+	// const changeType = (e) => {
+	// 	setOptions({ genre: options.genre, type: e.target.value });
+	// };
 
 	// let content;
 
@@ -137,8 +141,8 @@ function App() {
 			<header className="header-main">
 				<h2>Upcoming Metal</h2>
 				<div className="dropdown-wrapper">
-					<GenreFilter value={options.genre} changeGenre={changeGenre}></GenreFilter>
-					<TypeFilter value={options.type} changeType={changeType}></TypeFilter>
+					{/* <GenreFilter value={options.genre} changeGenre={changeGenre}></GenreFilter>
+					<TypeFilter value={options.type} changeType={changeType}></TypeFilter> */}
 				</div>
 			</header>
 
