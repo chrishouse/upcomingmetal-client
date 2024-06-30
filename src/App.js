@@ -12,9 +12,9 @@ function App() {
 		type: "all"
 	});
 	const [sortedBy, setSortedBy] = useState("isoDate");
-	// const [reverseSort, setReverseSort] = useState(false);
-	// const [refreshing, setRefreshing] = useState(false);
-	// const [loading, setLoading] = useState(true);
+	const [reverseSort, setReverseSort] = useState(false);
+	const [refreshing, setRefreshing] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		axios
@@ -22,11 +22,11 @@ function App() {
 				params: options
 			})
 			.then((res) => {
-				// setLoading(false);
+				setLoading(false);
 				if (res.data.length === 0) {
-					// setRefreshing(true);
+					setRefreshing(true);
 				} else {
-					// setRefreshing(false);
+					setRefreshing(false);
 					setReleases(res.data);
 				}
 			})
@@ -94,24 +94,24 @@ function App() {
 		}
 	});
 
-	// const changeSorting = (e) => {
-	// 	const labels = document.querySelectorAll(".header-item-label");
-	// 	labels.forEach((item) => item.classList.remove("active"));
-	// 	labels.forEach((item) => item.classList.remove("reversed"));
-	// 	labels.forEach((item) => item.classList.add("regular"));
-	// 	if (reverseSort === false && sortedBy === e.target.id) {
-	// 		setSortedBy(e.target.id + "Reverse");
-	// 		setReverseSort(true);
-	// 		e.target.classList.remove("regular");
-	// 		e.target.classList.add("reversed");
-	// 	} else {
-	// 		setSortedBy(e.target.id);
-	// 		setReverseSort(false);
-	// 		e.target.classList.add("regular");
-	// 		e.target.classList.remove("reversed");
-	// 	}
-	// 	e.target.classList.add("active");
-	// };
+	const changeSorting = (e) => {
+		const labels = document.querySelectorAll(".header-item-label");
+		labels.forEach((item) => item.classList.remove("active"));
+		labels.forEach((item) => item.classList.remove("reversed"));
+		labels.forEach((item) => item.classList.add("regular"));
+		if (reverseSort === false && sortedBy === e.target.id) {
+			setSortedBy(e.target.id + "Reverse");
+			setReverseSort(true);
+			e.target.classList.remove("regular");
+			e.target.classList.add("reversed");
+		} else {
+			setSortedBy(e.target.id);
+			setReverseSort(false);
+			e.target.classList.add("regular");
+			e.target.classList.remove("reversed");
+		}
+		e.target.classList.add("active");
+	};
 
 	const changeGenre = (e) => {
 		setOptions({ genre: e.target.value, type: options.type });
@@ -121,81 +121,83 @@ function App() {
 		setOptions({ genre: options.genre, type: e.target.value });
 	};
 
-	// let content;
+	let content;
 
-	// if (refreshing) {
-	// 	content = (
-	// 		<div className="refreshing-message">
-	// 			<h2>The database is currently being updated. Please reload the page in about 10 seconds.</h2>
-	// 		</div>
-	// 	);
-	// } else if (loading) {
-	//   content = (
-	//     <div className="loading"><img src="/images/loading-loading-forever.gif" alt="Loading" /></div>
-	//   );
-	// } else {
-
-	// }
-
-	return (
-		<div className="App">
-			<header className="header-main">
-				<h2>Upcoming Metal</h2>
-				<div className="dropdown-wrapper">
-					<GenreFilter value={options.genre} changeGenre={changeGenre}></GenreFilter>
-					<TypeFilter value={options.type} changeType={changeType}></TypeFilter>
-				</div>
-			</header>
-
-			<div className="release-wrapper">
-				<div className="release-item header-item">
-					<div className="header-item-label regular" id="band">
-						Band
-					</div>
-					<div className="header-item-label regular" id="albumTitle">
-						Album Title
-					</div>
-					<div className="header-item-label regular" id="type">
-						Release Type
-					</div>
-					<div className="header-item-label regular" id="genre">
-						Genre
-					</div>
-					<div className="header-item-label regular active" id="isoDate">
-						Release Date
-					</div>
-				</div>
-				{releases.map((item, index) => {
-					const band = item.band.replace("<a", "<a target='_blank'");
-					const album = item.album.replace("<a", "<a target='_blank'");
-					return (
-						<div className="release-item" key={index}>
-							<div>
-								<div className="mobile-label">Band:&nbsp;</div>
-								<div key={item.index} dangerouslySetInnerHTML={{ __html: band }}></div>
-							</div>
-							<div>
-								<div className="mobile-label">Album Title:&nbsp;</div>
-								<div key={item.index} dangerouslySetInnerHTML={{ __html: album }}></div>
-							</div>
-							<div>
-								<div className="mobile-label">Release Type:&nbsp;</div>
-								<div key={item.index} dangerouslySetInnerHTML={{ __html: item.type }}></div>
-							</div>
-							<div>
-								<div className="mobile-label">Genre:&nbsp;</div>
-								<div key={item.index} dangerouslySetInnerHTML={{ __html: item.genre }}></div>
-							</div>
-							<div>
-								<div className="mobile-label">Release Date:&nbsp;</div>
-								<div key={item.index} dangerouslySetInnerHTML={{ __html: item.date }}></div>
-							</div>
-						</div>
-					);
-				})}
+	if (refreshing) {
+		content = (
+			<div className="refreshing-message">
+				<h2>The database is currently being updated. Please reload the page in about 10 seconds.</h2>
 			</div>
-		</div>
-	);
+		);
+	} else if (loading) {
+		content = (
+			<div className="loading">
+				<img src="/images/loading-loading-forever.gif" alt="Loading" />
+			</div>
+		);
+	} else {
+		content = (
+			<div className="App">
+				<header className="header-main">
+					<h2>Upcoming Metal</h2>
+					<div className="dropdown-wrapper">
+						<GenreFilter value={options.genre} changeGenre={changeGenre}></GenreFilter>
+						<TypeFilter value={options.type} changeType={changeType}></TypeFilter>
+					</div>
+				</header>
+
+				<div className="release-wrapper">
+					<div className="release-item header-item">
+						<div className="header-item-label regular" id="band" onClick={changeSorting}>
+							Band
+						</div>
+						<div className="header-item-label regular" id="albumTitle" onClick={changeSorting}>
+							Album Title
+						</div>
+						<div className="header-item-label regular" id="type" onClick={changeSorting}>
+							Release Type
+						</div>
+						<div className="header-item-label regular" id="genre" onClick={changeSorting}>
+							Genre
+						</div>
+						<div className="header-item-label regular active" id="isoDate" onClick={changeSorting}>
+							Release Date
+						</div>
+					</div>
+					{releases.map((item, index) => {
+						const band = item.band.replace("<a", "<a target='_blank'");
+						const album = item.album.replace("<a", "<a target='_blank'");
+						return (
+							<div className="release-item" key={index}>
+								<div>
+									<div className="mobile-label">Band:&nbsp;</div>
+									<div key={item.index} dangerouslySetInnerHTML={{ __html: band }}></div>
+								</div>
+								<div>
+									<div className="mobile-label">Album Title:&nbsp;</div>
+									<div key={item.index} dangerouslySetInnerHTML={{ __html: album }}></div>
+								</div>
+								<div>
+									<div className="mobile-label">Release Type:&nbsp;</div>
+									<div key={item.index} dangerouslySetInnerHTML={{ __html: item.type }}></div>
+								</div>
+								<div>
+									<div className="mobile-label">Genre:&nbsp;</div>
+									<div key={item.index} dangerouslySetInnerHTML={{ __html: item.genre }}></div>
+								</div>
+								<div>
+									<div className="mobile-label">Release Date:&nbsp;</div>
+									<div key={item.index} dangerouslySetInnerHTML={{ __html: item.date }}></div>
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		);
+	}
+
+	return content;
 }
 
 export default App;
