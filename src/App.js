@@ -131,12 +131,6 @@ function App() {
   } else {
 		content = (
 			<div className="App">
-				{refreshing && (
-					<div className="refreshing-message">
-						<h2>The database is currently being updated. Please reload the page in about 10 seconds.</h2>
-					</div>
-				)}
-
 				<header className="header-main">
 					<h2>Upcoming Metal</h2>
 					<div className="dropdown-wrapper">
@@ -168,11 +162,11 @@ function App() {
 						const album = item.album.replace("<a", "<a target='_blank'");
 						return (
 							<div className="release-item" key={index}>
-								<div key={item.index} dangerouslySetInnerHTML={{ __html: band }}></div>
-								<div key={item.index} dangerouslySetInnerHTML={{ __html: album }}></div>
-								<div key={item.index} dangerouslySetInnerHTML={{ __html: item.type }}></div>
-								<div key={item.index} dangerouslySetInnerHTML={{ __html: item.genre }}></div>
-								<div key={item.index} dangerouslySetInnerHTML={{ __html: item.date }}></div>
+								<div><div className="mobile-label">Band:&nbsp;</div><div key={item.index} dangerouslySetInnerHTML={{ __html: band }}></div></div>
+								<div><div className="mobile-label">Album Title:&nbsp;</div><div key={item.index} dangerouslySetInnerHTML={{ __html: album }}></div></div>
+								<div><div className="mobile-label">Release Type:&nbsp;</div><div key={item.index} dangerouslySetInnerHTML={{ __html: item.type }}></div></div>
+								<div><div className="mobile-label">Genre:&nbsp;</div><div key={item.index} dangerouslySetInnerHTML={{ __html: item.genre }}></div></div>
+								<div><div className="mobile-label">Release Date:&nbsp;</div><div key={item.index} dangerouslySetInnerHTML={{ __html: item.date }}></div></div>
 							</div>
 						);
 					})}
