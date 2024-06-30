@@ -1,67 +1,66 @@
-// import React, { useState, useEffect } from "react";
-import React from "react";
-// import axios from "axios";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./App.css";
 
-// import GenreFilter from "./components/GenreFilter";
-// import TypeFilter from "./components/TypeFilter";
+import GenreFilter from "./components/GenreFilter";
+import TypeFilter from "./components/TypeFilter";
 
 function App() {
-	// let [releases, setReleases] = useState([]);
-	// const [options, setOptions] = useState({
-	// 	genre: "all",
-	// 	type: "all"
-	// });
+	let [releases, setReleases] = useState([]);
+	const [options, setOptions] = useState({
+		genre: "all",
+		type: "all"
+	});
 	// const [sortedBy, setSortedBy] = useState("isoDate");
 	// const [reverseSort, setReverseSort] = useState(false);
 	// const [refreshing, setRefreshing] = useState(false);
 	// const [loading, setLoading] = useState(true);
 
-	// useEffect(() => {
-	// 	axios
-	// 		.get(process.env.REACT_APP_SERVER_DOMAIN + "/api/releases/upcoming", {
-	// 			params: options
-	// 		})
-	// 		.then((res) => {
-	// 			// setLoading(false);
-	// 			if (res.data.length === 0) {
-	// 				// setRefreshing(true);
-	// 			} else {
-	// 				// setRefreshing(false);
-	// 				setReleases(res.data);
-	// 			}
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// }, [options]);
+	useEffect(() => {
+		axios
+			.get(process.env.REACT_APP_SERVER_DOMAIN + "/api/releases/upcoming", {
+				params: options
+			})
+			.then((res) => {
+				// setLoading(false);
+				if (res.data.length === 0) {
+					// setRefreshing(true);
+				} else {
+					// setRefreshing(false);
+					setReleases(res.data);
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, [options]);
 
-	// const months = {
-	// 	January: "01",
-	// 	February: "02",
-	// 	March: "03",
-	// 	April: "04",
-	// 	May: "05",
-	// 	June: "06",
-	// 	July: "07",
-	// 	August: "08",
-	// 	September: "09",
-	// 	October: "10",
-	// 	November: "11",
-	// 	December: "12"
-	// };
+	const months = {
+		January: "01",
+		February: "02",
+		March: "03",
+		April: "04",
+		May: "05",
+		June: "06",
+		July: "07",
+		August: "08",
+		September: "09",
+		October: "10",
+		November: "11",
+		December: "12"
+	};
 
-	// releases.forEach((item) => {
-	// 	// construct ISO date from given date
-	// 	let splitDate = item.date.split(" ");
-	// 	let month = months[splitDate[0]];
-	// 	let date = splitDate[1].replace("th", "").replace("rd", "").replace("nd", "").replace("st", "");
-	// 	let year = splitDate[2];
-	// 	let newDate = new Date(year + "-" + month + "-" + date);
-	// 	newDate = newDate.toISOString();
-	// 	item.isoDate = newDate;
-	// 	item.albumTitle = item.album.replace(/(<([^>]+)>)/gi, "");
-	// });
+	releases.forEach((item) => {
+		// construct ISO date from given date
+		let splitDate = item.date.split(" ");
+		let month = months[splitDate[0]];
+		let date = splitDate[1].replace("th", "").replace("rd", "").replace("nd", "").replace("st", "");
+		let year = splitDate[2];
+		let newDate = new Date(year + "-" + month + "-" + date);
+		newDate = newDate.toISOString();
+		item.isoDate = newDate;
+		item.albumTitle = item.album.replace(/(<([^>]+)>)/gi, "");
+	});
 
 	// releases.sort((a, b) => {
 	// 	switch (sortedBy) {
@@ -109,13 +108,13 @@ function App() {
 	// 	e.target.classList.add("active");
 	// };
 
-	// const changeGenre = (e) => {
-	// 	setOptions({ genre: e.target.value, type: options.type });
-	// };
+	const changeGenre = (e) => {
+		setOptions({ genre: e.target.value, type: options.type });
+	};
 
-	// const changeType = (e) => {
-	// 	setOptions({ genre: options.genre, type: e.target.value });
-	// };
+	const changeType = (e) => {
+		setOptions({ genre: options.genre, type: e.target.value });
+	};
 
 	// let content;
 
@@ -138,8 +137,8 @@ function App() {
 			<header className="header-main">
 				<h2>Upcoming Metal</h2>
 				<div className="dropdown-wrapper">
-					{/* <GenreFilter value={options.genre} changeGenre={changeGenre}></GenreFilter> */}
-					{/* <TypeFilter value={options.type} changeType={changeType}></TypeFilter> */}
+					<GenreFilter value={options.genre} changeGenre={changeGenre}></GenreFilter>
+					<TypeFilter value={options.type} changeType={changeType}></TypeFilter>
 				</div>
 			</header>
 
