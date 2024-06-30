@@ -27,17 +27,17 @@ function App() {
 					setRefreshing(true);
 				} else {
 					setRefreshing(false);
-					// setReleases(res.data);
+					setReleases([{album: "test", albumTitle: "test", band: "test", date: "june 30th", isoDate: "2024-06-30T05:00:00.000Z", type: "Compilation"}]);
 				}
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-    }, [options]);
+	}, [options]);
 
-    if (false) {
-      setReleases();
-    }
+	if (false) {
+		setReleases();
+	}
 
 	const months = {
 		January: "01",
