@@ -11,7 +11,7 @@ function App() {
 		genre: "all",
 		type: "all"
 	});
-	// const [sortedBy, setSortedBy] = useState("isoDate");
+	const [sortedBy, setSortedBy] = useState("isoDate");
 	// const [reverseSort, setReverseSort] = useState(false);
 	// const [refreshing, setRefreshing] = useState(false);
 	// const [loading, setLoading] = useState(true);
@@ -38,6 +38,7 @@ function App() {
     if (false) {
     setOptions({ genre: "all", type: "all" });
     setReleases({ genre: "all", type: "all" });
+    setSortedBy({ genre: "all", type: "all" });
     }
 
 	const months = {
@@ -67,32 +68,32 @@ function App() {
 		item.albumTitle = item.album.replace(/(<([^>]+)>)/gi, "");
 	});
 
-	// releases.sort((a, b) => {
-	// 	switch (sortedBy) {
-	// 		case "isoDate":
-	// 			return a.isoDate > b.isoDate ? 1 : b.isoDate > a.isoDate ? -1 : 0;
-	// 		case "band":
-	// 			return a.band > b.band ? 1 : b.band > a.band ? -1 : 0;
-	// 		case "albumTitle":
-	// 			return a.albumTitle > b.albumTitle ? 1 : b.albumTitle > a.albumTitle ? -1 : 0;
-	// 		case "type":
-	// 			return a.type > b.type ? 1 : b.type > a.type ? -1 : 0;
-	// 		case "genre":
-	// 			return a.genre > b.genre ? 1 : b.genre > a.genre ? -1 : 0;
-	// 		case "isoDateReverse":
-	// 			return a.isoDate < b.isoDate ? 1 : b.isoDate < a.isoDate ? -1 : 0;
-	// 		case "bandReverse":
-	// 			return a.band < b.band ? 1 : b.band < a.band ? -1 : 0;
-	// 		case "albumTitleReverse":
-	// 			return a.albumTitle < b.albumTitle ? 1 : b.albumTitle < a.albumTitle ? -1 : 0;
-	// 		case "typeReverse":
-	// 			return a.type < b.type ? 1 : b.type < a.type ? -1 : 0;
-	// 		case "genreReverse":
-	// 			return a.genre < b.genre ? 1 : b.genre < a.genre ? -1 : 0;
-	// 		default:
-	// 			return a.isoDate < b.isoDate ? 1 : b.isoDate < a.isoDate ? -1 : 0;
-	// 	}
-	// });
+	releases.sort((a, b) => {
+		switch (sortedBy) {
+			case "isoDate":
+				return a.isoDate > b.isoDate ? 1 : b.isoDate > a.isoDate ? -1 : 0;
+			case "band":
+				return a.band > b.band ? 1 : b.band > a.band ? -1 : 0;
+			case "albumTitle":
+				return a.albumTitle > b.albumTitle ? 1 : b.albumTitle > a.albumTitle ? -1 : 0;
+			case "type":
+				return a.type > b.type ? 1 : b.type > a.type ? -1 : 0;
+			case "genre":
+				return a.genre > b.genre ? 1 : b.genre > a.genre ? -1 : 0;
+			case "isoDateReverse":
+				return a.isoDate < b.isoDate ? 1 : b.isoDate < a.isoDate ? -1 : 0;
+			case "bandReverse":
+				return a.band < b.band ? 1 : b.band < a.band ? -1 : 0;
+			case "albumTitleReverse":
+				return a.albumTitle < b.albumTitle ? 1 : b.albumTitle < a.albumTitle ? -1 : 0;
+			case "typeReverse":
+				return a.type < b.type ? 1 : b.type < a.type ? -1 : 0;
+			case "genreReverse":
+				return a.genre < b.genre ? 1 : b.genre < a.genre ? -1 : 0;
+			default:
+				return a.isoDate < b.isoDate ? 1 : b.isoDate < a.isoDate ? -1 : 0;
+		}
+	});
 
 	// const changeSorting = (e) => {
 	// 	const labels = document.querySelectorAll(".header-item-label");
