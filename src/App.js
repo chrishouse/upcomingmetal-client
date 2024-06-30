@@ -35,11 +35,6 @@ function App() {
 			});
     }, [options]);
 
-    if (false) {
-    setOptions({ genre: "all", type: "all" });
-    setSortedBy({ genre: "all", type: "all" });
-    }
-
 	const months = {
 		January: "01",
 		February: "02",
