@@ -134,64 +134,63 @@ function App() {
 	// }
 
 	return (
-    <div>test</div>
-		// <div className="App">
-		// 	<header className="header-main">
-		// 		<h2>Upcoming Metal</h2>
-		// 		<div className="dropdown-wrapper">
-		// 			<GenreFilter value={options.genre} changeGenre={changeGenre}></GenreFilter>
-		// 			<TypeFilter value={options.type} changeType={changeType}></TypeFilter>
-		// 		</div>
-		// 	</header>
+		<div className="App">
+			<header className="header-main">
+				<h2>Upcoming Metal</h2>
+				<div className="dropdown-wrapper">
+					{/* <GenreFilter value={options.genre} changeGenre={changeGenre}></GenreFilter> */}
+					{/* <TypeFilter value={options.type} changeType={changeType}></TypeFilter> */}
+				</div>
+			</header>
 
-		// 	<div className="release-wrapper">
-		// 		<div className="release-item header-item">
-		// 			<div className="header-item-label regular" id="band" onClick={changeSorting}>
-		// 				Band
-		// 			</div>
-		// 			<div className="header-item-label regular" id="albumTitle" onClick={changeSorting}>
-		// 				Album Title
-		// 			</div>
-		// 			<div className="header-item-label regular" id="type" onClick={changeSorting}>
-		// 				Release Type
-		// 			</div>
-		// 			<div className="header-item-label regular" id="genre" onClick={changeSorting}>
-		// 				Genre
-		// 			</div>
-		// 			<div className="header-item-label regular active" id="isoDate" onClick={changeSorting}>
-		// 				Release Date
-		// 			</div>
-		// 		</div>
-		// 		{releases.map((item, index) => {
-		// 			const band = item.band.replace("<a", "<a target='_blank'");
-		// 			const album = item.album.replace("<a", "<a target='_blank'");
-		// 			return (
-		// 				<div className="release-item" key={index}>
-		// 					<div>
-		// 						<div className="mobile-label">Band:&nbsp;</div>
-		// 						<div key={item.index} dangerouslySetInnerHTML={{ __html: band }}></div>
-		// 					</div>
-		// 					<div>
-		// 						<div className="mobile-label">Album Title:&nbsp;</div>
-		// 						<div key={item.index} dangerouslySetInnerHTML={{ __html: album }}></div>
-		// 					</div>
-		// 					<div>
-		// 						<div className="mobile-label">Release Type:&nbsp;</div>
-		// 						<div key={item.index} dangerouslySetInnerHTML={{ __html: item.type }}></div>
-		// 					</div>
-		// 					<div>
-		// 						<div className="mobile-label">Genre:&nbsp;</div>
-		// 						<div key={item.index} dangerouslySetInnerHTML={{ __html: item.genre }}></div>
-		// 					</div>
-		// 					<div>
-		// 						<div className="mobile-label">Release Date:&nbsp;</div>
-		// 						<div key={item.index} dangerouslySetInnerHTML={{ __html: item.date }}></div>
-		// 					</div>
-		// 				</div>
-		// 			);
-		// 		})}
-		// 	</div>
-		// </div>
+			<div className="release-wrapper">
+				<div className="release-item header-item">
+					<div className="header-item-label regular" id="band">
+						Band
+					</div>
+					<div className="header-item-label regular" id="albumTitle">
+						Album Title
+					</div>
+					<div className="header-item-label regular" id="type">
+						Release Type
+					</div>
+					<div className="header-item-label regular" id="genre">
+						Genre
+					</div>
+					<div className="header-item-label regular active" id="isoDate">
+						Release Date
+					</div>
+				</div>
+				{/* {releases.map((item, index) => {
+					const band = item.band.replace("<a", "<a target='_blank'");
+					const album = item.album.replace("<a", "<a target='_blank'");
+					return (
+						<div className="release-item" key={index}>
+							<div>
+								<div className="mobile-label">Band:&nbsp;</div>
+								<div key={item.index} dangerouslySetInnerHTML={{ __html: band }}></div>
+							</div>
+							<div>
+								<div className="mobile-label">Album Title:&nbsp;</div>
+								<div key={item.index} dangerouslySetInnerHTML={{ __html: album }}></div>
+							</div>
+							<div>
+								<div className="mobile-label">Release Type:&nbsp;</div>
+								<div key={item.index} dangerouslySetInnerHTML={{ __html: item.type }}></div>
+							</div>
+							<div>
+								<div className="mobile-label">Genre:&nbsp;</div>
+								<div key={item.index} dangerouslySetInnerHTML={{ __html: item.genre }}></div>
+							</div>
+							<div>
+								<div className="mobile-label">Release Date:&nbsp;</div>
+								<div key={item.index} dangerouslySetInnerHTML={{ __html: item.date }}></div>
+							</div>
+						</div>
+					);
+				})} */}
+			</div>
+		</div>
 	);
 }
 
