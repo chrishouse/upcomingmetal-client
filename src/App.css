@@ -1,0 +1,141 @@
+* {
+  color: #eee;
+}
+
+*:focus-visible {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background-color: #222;
+}
+
+.release-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.release-item {
+	display: flex;
+	width: 100%;
+	border-bottom: solid 1px rgb(65, 65, 65);
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+.release-item:hover {
+  background-color: #2b2a2a;
+}
+
+select, option {
+  color: black;
+  background-color: #eee;
+}
+
+select {
+  padding: 5px;
+}
+
+.release-item > div {
+	flex: 1;
+	padding: 5px;
+}
+
+.header-item, .header-item:hover {
+	border-bottom: none;
+	font-weight: 600;
+	position: sticky;
+  background-color: #444;
+	top: 0;
+}
+
+.header-item-label {
+	cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.header-item-label.reversed::after {
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #eee;
+  margin-left: 7px;
+}
+
+.header-item-label.regular::after {
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #eee;
+  margin-left: 7px;
+}
+
+.header-item-label.active {
+	background-color: #676767;
+}
+
+.header-item-label.active::after {
+  content: "";
+}
+
+.header-main {
+	display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+	padding: 0 20px 20px;
+  justify-content: space-between;
+}
+
+.header-main h2 {
+  margin: 20px 20px 20px 0;
+}
+
+.dropdown-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0 0 0;
+}
+
+.genre-filter {
+  margin: 0 30px 20px 0;
+}
+
+.refreshing-message, .loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading img {
+  width: 75px;
+  height: 75px;
+}
+
+.mobile-label {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .release-item {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .header-item {
+    display: none;
+  }
+
+  .mobile-label {
+    display: block;
+    font-weight: 600;
+  }
+}
