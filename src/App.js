@@ -27,7 +27,7 @@ function App() {
 					setRefreshing(true);
 				} else {
 					setRefreshing(false);
-					setReleases([{album: "test", albumTitle: "test", band: "test", date: "june 30th", isoDate: "2024-06-30T05:00:00.000Z", type: "Compilation"}]);
+					setReleases([{album: "test", albumTitle: "test", band: "test", date: "June 30th, 2024", type: "Compilation"}]);
 				}
 			})
 			.catch((err) => {
