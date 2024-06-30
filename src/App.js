@@ -27,7 +27,7 @@ function App() {
 					// setRefreshing(true);
 				} else {
 					// setRefreshing(false);
-					// setReleases(res.data);
+					setReleases(res.data);
 				}
 			})
 			.catch((err) => {
@@ -37,7 +37,6 @@ function App() {
 
     if (false) {
     setOptions({ genre: "all", type: "all" });
-    setReleases({ genre: "all", type: "all" });
     setSortedBy({ genre: "all", type: "all" });
     }
 
