@@ -166,7 +166,7 @@ function App() {
 						Release Date
 					</div>
 				</div>
-				{/* {releases.map((item, index) => {
+				{releases.map((item, index) => {
 					const band = item.band.replace("<a", "<a target='_blank'");
 					const album = item.album.replace("<a", "<a target='_blank'");
 					return (
@@ -193,7 +193,7 @@ function App() {
 							</div>
 						</div>
 					);
-				})} */}
+				})}
 			</div>
 		</div>
 	);
