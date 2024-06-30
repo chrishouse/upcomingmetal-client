@@ -27,13 +27,17 @@ function App() {
 					setRefreshing(true);
 				} else {
 					setRefreshing(false);
-					setReleases(res.data);
+					// setReleases(res.data);
 				}
 			})
 			.catch((err) => {
 				console.log(err);
 			});
     }, [options]);
+
+    if (false) {
+      setReleases();
+    }
 
 	const months = {
 		January: "01",
