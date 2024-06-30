@@ -27,7 +27,7 @@ function App() {
 					setRefreshing(true);
 				} else {
 					setRefreshing(false);
-					setReleases([{album: "test", albumTitle: "test", band: "test", date: "June 30th, 2024", type: "Compilation"}]);
+					setReleases(res.data);
 				}
 			})
 			.catch((err) => {
