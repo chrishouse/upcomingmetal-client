@@ -118,17 +118,7 @@ function App() {
 
 	let content;
 
-	if (refreshing) {
-		content = (
-			<div className="refreshing-message">
-				<h2>The database is currently being updated. Please reload the page in about 10 seconds.</h2>
-			</div>
-		);
-	} else if (loading) {
-    content = (
-      <div className="loading"><img src="/images/loading-loading-forever.gif" alt="Loading" /></div>
-    );
-  } else {
+	
 		content = (
 			<div className="App">
 				<header className="header-main">
@@ -173,7 +163,7 @@ function App() {
 				</div>
 			</div>
 		);
-	}
+	
 
 	return content;
 }
