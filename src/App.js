@@ -114,13 +114,13 @@ function App() {
 	// 	e.target.classList.add("active");
 	// };
 
-	// const changeGenre = (e) => {
-	// 	setOptions({ genre: e.target.value, type: options.type });
-	// };
+	const changeGenre = (e) => {
+		setOptions({ genre: e.target.value, type: options.type });
+	};
 
-	// const changeType = (e) => {
-	// 	setOptions({ genre: options.genre, type: e.target.value });
-	// };
+	const changeType = (e) => {
+		setOptions({ genre: options.genre, type: e.target.value });
+	};
 
 	// let content;
 
@@ -143,8 +143,8 @@ function App() {
 			<header className="header-main">
 				<h2>Upcoming Metal</h2>
 				<div className="dropdown-wrapper">
-					<GenreFilter value={options.genre}></GenreFilter>
-					<TypeFilter value={options.type}></TypeFilter>
+					<GenreFilter value={options.genre} changeGenre={changeGenre}></GenreFilter>
+					<TypeFilter value={options.type} changeType={changeType}></TypeFilter>
 				</div>
 			</header>
 
