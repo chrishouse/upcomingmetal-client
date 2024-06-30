@@ -13,8 +13,8 @@ function App() {
 	});
 	const [sortedBy, setSortedBy] = useState("isoDate");
 	const [reverseSort, setReverseSort] = useState(false);
-	const [refreshing, setRefreshing] = useState(false);
-	const [loading, setLoading] = useState(true);
+	// const [refreshing, setRefreshing] = useState(false);
+	// const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		axios
@@ -22,11 +22,11 @@ function App() {
 				params: options
 			})
 			.then((res) => {
-        setLoading(false);
+        // setLoading(false);
 				if (res.data.length === 0) {
-					setRefreshing(true);
+					// setRefreshing(true);
 				} else {
-					setRefreshing(false);
+					// setRefreshing(false);
 					setReleases(res.data);
 				}
 			})
@@ -118,17 +118,17 @@ function App() {
 
 	let content;
 
-	if (refreshing) {
-		content = (
-			<div className="refreshing-message">
-				<h2>The database is currently being updated. Please reload the page in about 10 seconds.</h2>
-			</div>
-		);
-	} else if (loading) {
-    content = (
-      <div className="loading"><img src="/images/loading-loading-forever.gif" alt="Loading" /></div>
-    );
-  } else {
+	// if (refreshing) {
+	// 	content = (
+	// 		<div className="refreshing-message">
+	// 			<h2>The database is currently being updated. Please reload the page in about 10 seconds.</h2>
+	// 		</div>
+	// 	);
+	// } else if (loading) {
+  //   content = (
+  //     <div className="loading"><img src="/images/loading-loading-forever.gif" alt="Loading" /></div>
+  //   );
+  // } else {
 		content = (
 			<div className="App">
 				<header className="header-main">
@@ -173,7 +173,7 @@ function App() {
 				</div>
 			</div>
 		);
-	}
+	// }
 
 	return content;
 }
