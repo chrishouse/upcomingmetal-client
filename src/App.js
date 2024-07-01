@@ -27,7 +27,7 @@ function App() {
 					setRefreshing(true);
 				} else {
 					setRefreshing(false);
-					// setReleases(res.data);
+					setReleases(res.data);
 				}
 			})
 			.catch((err) => {
