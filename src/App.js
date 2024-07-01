@@ -119,7 +119,7 @@ function App() {
 		content = (
 			<div className="App">
 				<header className="header-main">
-					<h2>Upcoming Metal</h2>
+					<div className="logo-wrap"><img src="/images/upcoming-metal-logo.png" alt="Upcoming Metal" /></div>
 					<div className="dropdown-wrapper">
 						<GenreFilter value={options.genre} changeGenre={changeGenre}></GenreFilter>
 						<TypeFilter value={options.type} changeType={changeType}></TypeFilter>
