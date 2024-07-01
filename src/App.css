@@ -94,8 +94,13 @@ select {
   justify-content: space-between;
 }
 
-.header-main h2 {
+.logo-wrap {
   margin: 20px 20px 20px 0;
+  max-width: 275px;
+}
+
+.logo-wrap img {
+  width: 100%;
 }
 
 .dropdown-wrapper {
