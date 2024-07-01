@@ -39,10 +39,9 @@ function App() {
 		// construct ISO date from given date
 		let splitDate = item.date.split(" ");
 		let month = splitDate[0];
-		let date = splitDate[1].replace("th", "").replace("rd", "").replace("nd", "").replace("st", "");
+		let date = splitDate[1].replace("th", "").replace("rd", "").replace("nd", "").replace("st", "").replace(",", "");
 		let year = splitDate[2];
 		let newDate = new Date(date + " " + month + " " + year + " 00:00 UTC");
-		console.log(newDate);
 		newDate = newDate.toISOString();
 		item.isoDate = newDate;
 		item.albumTitle = item.album.replace(/(<([^>]+)>)/gi, "");
