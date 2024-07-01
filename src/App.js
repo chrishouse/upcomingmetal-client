@@ -35,29 +35,10 @@ function App() {
 			});
 	}, [options]);
 
-	if (false) {
-		setReleases();
-	}
-
-	const months = {
-		January: "01",
-		February: "02",
-		March: "03",
-		April: "04",
-		May: "05",
-		June: "06",
-		July: "07",
-		August: "08",
-		September: "09",
-		October: "10",
-		November: "11",
-		December: "12"
-	};
-
 	releases.forEach((item) => {
 		// construct ISO date from given date
 		let splitDate = item.date.split(" ");
-		let month = months[splitDate[0]];
+		let month = splitDate[0];
 		let date = splitDate[1].replace("th", "").replace("rd", "").replace("nd", "").replace("st", "");
 		let year = splitDate[2];
 		let newDate = new Date(date + " " + month + " " + year + " 00:00 UTC");
