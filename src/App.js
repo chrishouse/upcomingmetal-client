@@ -35,6 +35,10 @@ function App() {
 			});
 	}, [options]);
 
+  if (false) {
+    setReleases();
+  }
+
 	const months = {
 		January: "01",
 		February: "02",
