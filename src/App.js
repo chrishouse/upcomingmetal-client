@@ -4,6 +4,7 @@ import "./App.css";
 
 import GenreFilter from "./components/GenreFilter";
 import TypeFilter from "./components/TypeFilter";
+import ReleaseSelect from "./components/ReleaseSelect";
 
 function App() {
 	let [releases, setReleases] = useState([]);
@@ -15,25 +16,32 @@ function App() {
 	const [reverseSort, setReverseSort] = useState(false);
 	const [refreshing, setRefreshing] = useState(false);
 	const [loading, setLoading] = useState(true);
+	const [selection, setSelection] = useState("upcoming");
+	const [noResults, setNoResults] = useState(false);
 
 	useEffect(() => {
 		axios
-			.get(process.env.REACT_APP_SERVER_DOMAIN + "/api/releases/upcoming", {
+			.get(process.env.REACT_APP_SERVER_DOMAIN + "/api/releases/" + selection, {
 				params: options
 			})
 			.then((res) => {
 				setLoading(false);
-				if (res.data.length === 0) {
+				if (res.data.length === 0 && options.genre === "all" && options.type === "all") {
 					setRefreshing(true);
 				} else {
-					setRefreshing(false);
-					setReleases(res.data);
+					if (res.data.length === 0) {
+						setNoResults(true);
+					} else {
+						setNoResults(false);
+						setRefreshing(false);
+						setReleases(res.data);
+					}
 				}
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-	}, [options]);
+	}, [options, selection]);
 
 	releases.forEach((item) => {
 		// construct ISO date from given date
@@ -101,12 +109,24 @@ function App() {
 		setOptions({ genre: options.genre, type: e.target.value });
 	};
 
+	const changeSelection = (e) => {
+		if (selection !== e.target.name) {
+			setLoading(true);
+			setSelection(e.target.name);
+			if (e.target.name === "recent") {
+				setSortedBy("isoDateReverse");
+			} else if (e.target.name === "upcoming") {
+				setSortedBy("isoDate");
+			}
+		}
+	};
+
 	let content;
 
 	if (refreshing) {
 		content = (
 			<div className="refreshing-message">
-				<h2>The database is currently being updated. Please reload the page in about 10 seconds.</h2>
+				<h2>The database is currently being updated. Please reload the page in about 30 seconds.</h2>
 			</div>
 		);
 	} else if (loading) {
@@ -115,69 +135,79 @@ function App() {
 				<img src="/images/loading-loading-forever.gif" alt="Loading" />
 			</div>
 		);
-	} else {
+	} else if (noResults) {
 		content = (
-			<div className="App">
-				<header className="header-main">
-					<div className="logo-wrap"><img src="/images/upcoming-metal-logo.png" alt="Upcoming Metal" /></div>
-					<div className="dropdown-wrapper">
-						<GenreFilter value={options.genre} changeGenre={changeGenre}></GenreFilter>
-						<TypeFilter value={options.type} changeType={changeType}></TypeFilter>
-					</div>
-				</header>
-
-				<div className="release-wrapper">
-					<div className="release-item header-item">
-						<div className="header-item-label regular" id="band" onClick={changeSorting}>
-							Band
-						</div>
-						<div className="header-item-label regular" id="albumTitle" onClick={changeSorting}>
-							Album Title
-						</div>
-						<div className="header-item-label regular" id="type" onClick={changeSorting}>
-							Release Type
-						</div>
-						<div className="header-item-label regular" id="genre" onClick={changeSorting}>
-							Genre
-						</div>
-						<div className="header-item-label regular active" id="isoDate" onClick={changeSorting}>
-							Release Date
-						</div>
-					</div>
-					{releases.map((item, index) => {
-						const band = item.band.replace("<a", "<a target='_blank'");
-						const album = item.album.replace("<a", "<a target='_blank'");
-						return (
-							<div className="release-item" key={index}>
-								<div>
-									<div className="mobile-label">Band:&nbsp;</div>
-									<div key={item.index} dangerouslySetInnerHTML={{ __html: band }}></div>
-								</div>
-								<div>
-									<div className="mobile-label">Album Title:&nbsp;</div>
-									<div key={item.index} dangerouslySetInnerHTML={{ __html: album }}></div>
-								</div>
-								<div>
-									<div className="mobile-label">Release Type:&nbsp;</div>
-									<div key={item.index} dangerouslySetInnerHTML={{ __html: item.type }}></div>
-								</div>
-								<div>
-									<div className="mobile-label">Genre:&nbsp;</div>
-									<div key={item.index} dangerouslySetInnerHTML={{ __html: item.genre }}></div>
-								</div>
-								<div>
-									<div className="mobile-label">Release Date:&nbsp;</div>
-									<div key={item.index} dangerouslySetInnerHTML={{ __html: item.date }}></div>
-								</div>
-							</div>
-						);
-					})}
-				</div>
+			<div className="refreshing-message">
+				<h2>There are no results for those filters.</h2>
 			</div>
 		);
+	} else {
+		content = releases.map((item, index) => {
+			const band = item.band.replace("<a", "<a target='_blank'");
+			const album = item.album.replace("<a", "<a target='_blank'");
+			return (
+				<div className="release-item" key={index}>
+					<div>
+						<div className="mobile-label">Band:&nbsp;</div>
+						<div key={item.index} dangerouslySetInnerHTML={{ __html: band }}></div>
+					</div>
+					<div>
+						<div className="mobile-label">Album Title:&nbsp;</div>
+						<div key={item.index} dangerouslySetInnerHTML={{ __html: album }}></div>
+					</div>
+					<div>
+						<div className="mobile-label">Release Type:&nbsp;</div>
+						<div key={item.index} dangerouslySetInnerHTML={{ __html: item.type }}></div>
+					</div>
+					<div>
+						<div className="mobile-label">Genre:&nbsp;</div>
+						<div key={item.index} dangerouslySetInnerHTML={{ __html: item.genre }}></div>
+					</div>
+					<div>
+						<div className="mobile-label">Release Date:&nbsp;</div>
+						<div key={item.index} dangerouslySetInnerHTML={{ __html: item.date }}></div>
+					</div>
+				</div>
+			);
+		});
 	}
 
-	return content;
+	return (
+		<div className="App">
+			<header className="header-main">
+				<div className="logo-wrap">
+					<img src="/images/upcoming-metal-logo.png" alt="Upcoming Metal" />
+				</div>
+				<ReleaseSelect selection={selection} changeSelection={changeSelection}></ReleaseSelect>
+				<div className="dropdown-wrapper">
+					<GenreFilter value={options.genre} changeGenre={changeGenre}></GenreFilter>
+					<TypeFilter value={options.type} changeType={changeType}></TypeFilter>
+				</div>
+			</header>
+
+			<div className="release-wrapper">
+				<div className="release-item header-item">
+					<div className="header-item-label regular" id="band" onClick={changeSorting}>
+						Band
+					</div>
+					<div className="header-item-label regular" id="albumTitle" onClick={changeSorting}>
+						Album Title
+					</div>
+					<div className="header-item-label regular" id="type" onClick={changeSorting}>
+						Release Type
+					</div>
+					<div className="header-item-label regular" id="genre" onClick={changeSorting}>
+						Genre
+					</div>
+					<div className="header-item-label regular active" id="isoDate" onClick={changeSorting}>
+						Release Date
+					</div>
+				</div>
+
+				{content}
+			</div>
+		</div>
+	);
 }
 
 export default App;
